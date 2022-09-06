@@ -88,20 +88,12 @@ document.addEventListener("scroll", makeActive);
 
 
 const form =document.querySelector('form')
-const handleSubmit = (e) => {
-    e.preventDefault();
-    const name =  document.querySelector('[name="costumer_name"]');
-    const email = document.querySelector('[name="costumer_email"]');
-    const phone  = document.querySelector('[name="phone_number"]');
-}
- // construct a FormData object, which fires the formdata event
- const formData = new FormData(form);
- // formdata gets modified by the formdata event
- console.log(formData.get('costumer_name')); // foo
- console.log(formData.get('costumer_email')); // bar
 
  form.addEventListener('submit', function(event){
 event.preventDefault();
+//making form data
+let formData = new FormData(form)
+
     alert('thank you we will contact you shortly');
  });
  
