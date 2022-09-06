@@ -13,39 +13,49 @@
  * 
 */
 
-/**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
+let navBar = document.querySelector('.navbar__menu');
+let navList = document.querySelector('#navbar__list');
 
-/**
- * Define Global Variables
- * 
-*/
-
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-
-
+/** 
+ * - creates a list item
+ * - appends an anchor child item
+ * - "num" is the variable that we pass in
+ * - returns the created list item
+ */
+function createListElement(num){
+    let listItem = document.createElement('li');
+    let anchor = document.createElement('a');
+    
+    listItem.append(anchor);
+    
+    anchor.innerHTML = `section${num}`
+    anchor.dataset.section = `#section${num}`
+    anchor.href = `#section${num}`
+    anchor.classList.add('menu__link');
+   
+    anchor.addEventListener('click', e=>{
+        e.preventDefault()
+        // remove className from classList
+        // conditional
+        // if not clicked then active does not work
+        navList.querySelectorAll('a').forEach(a=>{
+            a.classList.remove('active')
+        })
 // Add class 'active' to section when near top of viewport
+        anchor.classList.add('active')
+       let section = document.querySelector(anchor.dataset.section)
+       section.scrollIntoView({behavior:"smooth"})
+    })
 
+    return listItem
+}
+
+for (let i = 1; i <= 4; i++) {
+    let item = createListElement(i);
+    navList.appendChild(item);
+}
 
 // Scroll to anchor ID using scrollTO event
-
 
 /**
  * End Main Functions
@@ -55,8 +65,49 @@
 
 // Build menu 
 
-// Scroll to section on link click
+// Scroll to section on link clck
+function makeActive(){
+    for (const section of document.querySelectorAll("section")) {
+        const box = section.getBoundingClientRect();
+        //Find a value that works best, but 150 seems to be a good start.
+        if (box.top <= 150 && box.bottom >= 150) {
+        //apply active state on current section and corresponding Nav link
+        const navLink = document.querySelector(`[href="#${section.id}"]`)
+        navLink.classList.add('active')
+        } else {
+        //Remove active state from other section and corresponding Nav link
+        const navLink = document.querySelector(`[href="#${section.id}"]`)
+        navLink.classList.remove('active')
+        }
+     }
+  }
 
-// Set sections as active
+  // Make sections active
+  // Set sections as active
+document.addEventListener("scroll", makeActive);
 
+
+const form =document.querySelector('form')
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const name =  document.querySelector('[name="costumer_name"]');
+    const email = document.querySelector('[name="costumer_email"]');
+    const phone  = document.querySelector('[name="phone_number"]');
+}
+ // construct a FormData object, which fires the formdata event
+ const formData = new FormData(form);
+ // formdata gets modified by the formdata event
+ console.log(formData.get('costumer_name')); // foo
+ console.log(formData.get('costumer_email')); // bar
+
+ form.addEventListener('submit', function(event){
+event.preventDefault();
+    alert('thank you we will contact you shortly');
+ });
+ 
+
+//notify seccessful submission
+
+
+    
 
