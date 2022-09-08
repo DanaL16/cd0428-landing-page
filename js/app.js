@@ -49,8 +49,9 @@ function createListElement(num){
 
     return listItem
 }
+let dynamic = document.querySelectorAll('section').length
 
-for (let i = 1; i <= 4; i++) {
+for (let i = 1; i <= dynamic; i++) {
     let item = createListElement(i);
     navList.appendChild(item);
 }
@@ -93,7 +94,6 @@ const form =document.querySelector('form')
 event.preventDefault();
 //making form data
 let formData = new FormData(form)
-
     alert('thank you we will contact you shortly');
  });
  
