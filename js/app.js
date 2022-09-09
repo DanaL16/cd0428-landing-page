@@ -93,7 +93,6 @@ const form =document.querySelector('form')
  form.addEventListener('submit', function(event){
 event.preventDefault();
 //making form data
-let formData = new FormData(form)
     alert('thank you we will contact you shortly');
  });
  
